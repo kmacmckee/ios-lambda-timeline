@@ -11,10 +11,30 @@ import Photos
 
 class ImagePostViewController: ShiftableViewController {
     
+    
+    
+    @IBOutlet weak var brightnessSaturationContrastView: UIView!
+    @IBOutlet weak var bSCViewHeight: NSLayoutConstraint!
+    
+    var viewHeight: CGFloat?
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setImageViewHeight(with: 1.0)
+        
+        viewHeight = bSCViewHeight.constant
         
         updateViews()
     }
@@ -35,6 +55,28 @@ class ImagePostViewController: ShiftableViewController {
         
         chooseImageButton.setTitle("", for: [])
     }
+    
+    
+    @IBAction func editBrightnessSaturationContrastButtonPressed(_ sender: Any) {
+        
+        if brightnessSaturationContrastView.isHidden {
+            brightnessSaturationContrastView.isHidden = false
+            bSCViewHeight.constant = viewHeight!
+        } else {
+            brightnessSaturationContrastView.isHidden = true
+            bSCViewHeight.constant = 0
+            
+        }
+        
+        
+    }
+    
+    
+    
+    
+    
+    
+    
     
     private func presentImagePickerController() {
         
