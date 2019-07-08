@@ -11,30 +11,44 @@ import Photos
 
 class ImagePostViewController: ShiftableViewController {
     
+    var originalImage: UIImage? {
+        didSet {
+            updateImage()
+        }
+    }
+    
+    @IBOutlet weak var bcsStackView: UIStackView!
+    @IBOutlet weak var brightnessSlider: UISlider!
+    @IBOutlet weak var contrastSlider: UISlider!
+    @IBOutlet weak var saturationSlider: UISlider!
     
     
-    @IBOutlet weak var brightnessSaturationContrastView: UIView!
-    @IBOutlet weak var bSCViewHeight: NSLayoutConstraint!
-    
-    var viewHeight: CGFloat?
-    
+    @IBOutlet weak var exposureSlider: UISlider!
+    @IBOutlet weak var gammaSlider: UISlider!
+    @IBOutlet weak var zoomBlurSlider: UISlider!
     
     
+    @IBOutlet weak var lightTunnelStackView: UIStackView!
+    @IBOutlet weak var rotationSlider: UISlider!
+    @IBOutlet weak var radiusSlider: UISlider!
     
-    
-    
-    
-    
-    
-    
-    
+    private let context = CIContext(options: nil)
+    private let colorFilter = CIFilter(name: "CIColorControls")
+    private let exposureFilter = CIFilter(name: "CIExposureAdjust")
+    private let gammaFilter = CIFilter(name: "CIGammaAdjust")
+    private let zoomBlurFilter = CIFilter(name: "CIZoomBlur")
+    private let lightTunnelFilter = CIFilter(name: "CILightTunnel")
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        bcsStackView.isHidden = true
+        exposureSlider.isHidden = true
+        gammaSlider.isHidden = true
+        zoomBlurSlider.isHidden = true
+        lightTunnelStackView.isHidden = true
+        
         
         setImageViewHeight(with: 1.0)
-        
-        viewHeight = bSCViewHeight.constant
         
         updateViews()
     }
@@ -51,25 +65,162 @@ class ImagePostViewController: ShiftableViewController {
         
         setImageViewHeight(with: image.ratio)
         
-        imageView.image = image
+        //imageView.image = image
         
         chooseImageButton.setTitle("", for: [])
     }
     
-    
-    @IBAction func editBrightnessSaturationContrastButtonPressed(_ sender: Any) {
+    func updateImage() {
+        print("updating image")
         
-        if brightnessSaturationContrastView.isHidden {
-            brightnessSaturationContrastView.isHidden = false
-            bSCViewHeight.constant = viewHeight!
+        if let originalImage = originalImage {
+            imageView.image = image(byFiltering: originalImage)
         } else {
-            brightnessSaturationContrastView.isHidden = true
-            bSCViewHeight.constant = 0
-            
+            imageView.image = nil
         }
+    }
+    
+    
+    private func image(byFiltering image: UIImage) -> UIImage {
+        guard let cgImage = image.cgImage else { return image }
+        let ciImage = CIImage(cgImage: cgImage)
         
+        colorFilter?.setValue(ciImage, forKey: "inputImage")
+        colorFilter?.setValue(brightnessSlider.value, forKey: "inputBrightness")
+        colorFilter?.setValue(contrastSlider.value, forKey: "inputContrast")
+        colorFilter?.setValue(saturationSlider.value, forKey: "inputSaturation")
+        
+        guard let colorImage = colorFilter?.outputImage else { return image }
+        
+        exposureFilter?.setValue(colorImage, forKey: "inputImage")
+        exposureFilter?.setValue(exposureSlider.value, forKey: "inputEV")
+        
+        guard let exposureImage = exposureFilter?.outputImage else { return image }
+        
+        
+        gammaFilter?.setValue(exposureImage, forKey: "inputImage")
+        gammaFilter?.setValue(gammaSlider.value, forKey: "inputPower")
+        
+        guard let gammaImage = gammaFilter?.outputImage else { return image }
+        
+        zoomBlurFilter?.setValue(gammaImage, forKey: "inputImage")
+        zoomBlurFilter?.setValue(CIVector(cgPoint: imageView.center), forKey: "inputCenter")
+        zoomBlurFilter?.setValue(zoomBlurSlider.value, forKey: "inputAmount")
+        
+        guard let zoomImage = zoomBlurFilter?.outputImage else { return image }
+        
+        
+        lightTunnelFilter?.setValue(zoomImage, forKey: "inputImage")
+        lightTunnelFilter?.setValue(CIVector(cgPoint: imageView.center), forKey: "inputCenter")
+        lightTunnelFilter?.setValue(rotationSlider.value, forKey: "inputRotation")
+        lightTunnelFilter?.setValue(radiusSlider.value, forKey: "inputRadius")
+        
+        guard let outputCIImage = lightTunnelFilter?.outputImage else { return image }
+        
+        guard let outputCGImage = context.createCGImage(outputCIImage, from: outputCIImage.extent) else { return image }
+        
+        print("returning edited image")
+        return UIImage(cgImage: outputCGImage)
         
     }
+    
+    
+    // MARK: - Edit ColorControls
+    @IBAction func editBrightnessSaturationContrastButtonPressed(_ sender: Any) {
+        if bcsStackView.isHidden {
+            bcsStackView.isHidden = false
+        } else {
+            bcsStackView.isHidden = true
+        }
+    }
+    
+    @IBAction func brightnessValueChanged(_ sender: Any) {
+        updateImage()
+    }
+    
+    @IBAction func contrastValueChanged(_ sender: Any) {
+        updateImage()
+    }
+    
+    @IBAction func saturationValueChanged(_ sender: Any) {
+        updateImage()
+    }
+    
+    
+    
+    
+    // MARK: - Edit Exposure
+    @IBAction func editExposureButtonPressed(_ sender: Any) {
+        if exposureSlider.isHidden {
+            exposureSlider.isHidden = false
+        } else {
+            exposureSlider.isHidden = true
+        }
+    }
+    
+    @IBAction func exposureValueChanged(_ sender: Any) {
+        print("exposure value changed")
+        updateImage()
+    }
+    
+    
+    
+    
+    // MARK: - Edit Gamma
+    @IBAction func editGammaButtonPressed(_ sender: Any) {
+        if gammaSlider.isHidden {
+            gammaSlider.isHidden = false
+        } else {
+            gammaSlider.isHidden = true
+        }
+    }
+    
+    @IBAction func gammaValueChanged(_ sender: Any) {
+        updateImage()
+    }
+    
+    
+    
+    // MARK: - Edit Zoom Blur
+    @IBAction func editZoomBlurButtonPressed(_ sender: Any) {
+        if zoomBlurSlider.isHidden {
+            zoomBlurSlider.isHidden = false
+        } else {
+            zoomBlurSlider.isHidden = true
+        }
+    }
+    
+    @IBAction func zoomBlurValueChanged(_ sender: Any) {
+        updateImage()
+    }
+    
+    
+
+    
+    // MARK: - Edit Light Tunnel
+    @IBAction func editLightTunnelButtonPressed(_ sender: Any) {
+        if lightTunnelStackView.isHidden {
+            lightTunnelStackView.isHidden = false
+        } else {
+            lightTunnelStackView.isHidden = true
+        }
+    }
+    
+    @IBAction func centerValueChanged(_ sender: Any) {
+        updateImage()
+    }
+    
+    @IBAction func rotationValueChanged(_ sender: Any) {
+        updateImage()
+    }
+    
+    @IBAction func radiusValueChanged(_ sender: Any) {
+        updateImage()
+    }
+    
+    
+    
+    
     
     
     
@@ -178,6 +329,7 @@ extension ImagePostViewController: UIImagePickerControllerDelegate, UINavigation
         imageView.image = image
         
         setImageViewHeight(with: image.ratio)
+        originalImage = image
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
