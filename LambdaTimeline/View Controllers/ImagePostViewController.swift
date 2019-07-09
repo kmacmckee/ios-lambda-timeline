@@ -17,6 +17,8 @@ class ImagePostViewController: ShiftableViewController {
         }
     }
     
+    var comicModeOn: Bool = false
+    
     @IBOutlet weak var bcsStackView: UIStackView!
     @IBOutlet weak var brightnessSlider: UISlider!
     @IBOutlet weak var contrastSlider: UISlider!
@@ -37,7 +39,7 @@ class ImagePostViewController: ShiftableViewController {
     private let exposureFilter = CIFilter(name: "CIExposureAdjust")
     private let gammaFilter = CIFilter(name: "CIGammaAdjust")
     private let zoomBlurFilter = CIFilter(name: "CIZoomBlur")
-    private let lightTunnelFilter = CIFilter(name: "CILightTunnel")
+    private let comicFilter = CIFilter(name: "CICommicEffect")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,8 +47,6 @@ class ImagePostViewController: ShiftableViewController {
         exposureSlider.isHidden = true
         gammaSlider.isHidden = true
         zoomBlurSlider.isHidden = true
-        lightTunnelStackView.isHidden = true
-        
         
         setImageViewHeight(with: 1.0)
         
@@ -65,14 +65,12 @@ class ImagePostViewController: ShiftableViewController {
         
         setImageViewHeight(with: image.ratio)
         
-        //imageView.image = image
+        imageView.image = image
         
         chooseImageButton.setTitle("", for: [])
     }
     
     func updateImage() {
-        print("updating image")
-        
         if let originalImage = originalImage {
             imageView.image = image(byFiltering: originalImage)
         } else {
@@ -82,7 +80,7 @@ class ImagePostViewController: ShiftableViewController {
     
     
     private func image(byFiltering image: UIImage) -> UIImage {
-        guard let cgImage = image.cgImage else { return image }
+        guard let cgImage = image.flattened.cgImage else { return image }
         let ciImage = CIImage(cgImage: cgImage)
         
         colorFilter?.setValue(ciImage, forKey: "inputImage")
@@ -97,7 +95,6 @@ class ImagePostViewController: ShiftableViewController {
         
         guard let exposureImage = exposureFilter?.outputImage else { return image }
         
-        
         gammaFilter?.setValue(exposureImage, forKey: "inputImage")
         gammaFilter?.setValue(gammaSlider.value, forKey: "inputPower")
         
@@ -109,18 +106,21 @@ class ImagePostViewController: ShiftableViewController {
         
         guard let zoomImage = zoomBlurFilter?.outputImage else { return image }
         
+        var outputCIImage: CIImage?
+    
+        if comicModeOn {
+            comicFilter?.setValue(zoomImage, forKey: "inputImage")
+            outputCIImage = comicFilter?.outputImage
+        } else {
+            outputCIImage = zoomImage
+        }
         
-        lightTunnelFilter?.setValue(zoomImage, forKey: "inputImage")
-        lightTunnelFilter?.setValue(CIVector(cgPoint: imageView.center), forKey: "inputCenter")
-        lightTunnelFilter?.setValue(rotationSlider.value, forKey: "inputRotation")
-        lightTunnelFilter?.setValue(radiusSlider.value, forKey: "inputRadius")
+        guard let outputImage = outputCIImage else { return image }
         
-        guard let outputCIImage = lightTunnelFilter?.outputImage else { return image }
+        guard let outputCGImage = context.createCGImage(outputImage, from: outputImage.extent) else { return image }
         
-        guard let outputCGImage = context.createCGImage(outputCIImage, from: outputCIImage.extent) else { return image }
-        
-        print("returning edited image")
         return UIImage(cgImage: outputCGImage)
+        
         
     }
     
@@ -159,7 +159,6 @@ class ImagePostViewController: ShiftableViewController {
     }
     
     @IBAction func exposureValueChanged(_ sender: Any) {
-        print("exposure value changed")
         updateImage()
     }
     
@@ -197,24 +196,14 @@ class ImagePostViewController: ShiftableViewController {
     
 
     
-    // MARK: - Edit Light Tunnel
-    @IBAction func editLightTunnelButtonPressed(_ sender: Any) {
-        if lightTunnelStackView.isHidden {
-            lightTunnelStackView.isHidden = false
+    // MARK: - Toggle Comic Mode
+
+    @IBAction func toggleComicMode(_ sender: Any) {
+        if comicModeOn == false {
+            comicModeOn = true
         } else {
-            lightTunnelStackView.isHidden = true
+            comicModeOn = false
         }
-    }
-    
-    @IBAction func centerValueChanged(_ sender: Any) {
-        updateImage()
-    }
-    
-    @IBAction func rotationValueChanged(_ sender: Any) {
-        updateImage()
-    }
-    
-    @IBAction func radiusValueChanged(_ sender: Any) {
         updateImage()
     }
     
@@ -328,8 +317,10 @@ extension ImagePostViewController: UIImagePickerControllerDelegate, UINavigation
         
         imageView.image = image
         
-        setImageViewHeight(with: image.ratio)
         originalImage = image
+        
+        setImageViewHeight(with: image.ratio)
+
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {

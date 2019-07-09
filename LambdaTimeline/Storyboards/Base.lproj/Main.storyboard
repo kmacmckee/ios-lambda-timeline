@@ -112,11 +112,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9qd-If-ddw">
+                            <scrollView multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9qd-If-ddw">
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="PkI-rS-ua9">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="413"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="817"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yQ3-V3-hIf">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="375"/>
@@ -152,167 +152,123 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                             </textField>
-                                        </subviews>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="jrm-Ph-n9y">
-                                        <rect key="frame" x="8" y="421" width="398" height="465"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yg0-bP-NsP">
-                                                <rect key="frame" x="0.0" y="0.0" width="398" height="30"/>
-                                                <state key="normal" title="Edit Brightness/Saturation/Contrast"/>
-                                                <connections>
-                                                    <action selector="editBrightnessSaturationContrastButtonPressed:" destination="1Aw-4e-BW2" eventType="touchUpInside" id="403-QG-zbu"/>
-                                                </connections>
-                                            </button>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="2SY-2e-JCk">
-                                                <rect key="frame" x="0.0" y="38" width="398" height="92"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="jrm-Ph-n9y">
+                                                <rect key="frame" x="0.0" y="421" width="414" height="396"/>
                                                 <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="31" translatesAutoresizingMaskIntoConstraints="NO" id="TL0-gL-C2y">
-                                                        <rect key="frame" x="0.0" y="0.0" width="398" height="30"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yg0-bP-NsP">
+                                                        <rect key="frame" x="0.0" y="0.0" width="414" height="30"/>
+                                                        <state key="normal" title="Edit Brightness/Saturation/Contrast"/>
+                                                        <connections>
+                                                            <action selector="editBrightnessSaturationContrastButtonPressed:" destination="1Aw-4e-BW2" eventType="touchUpInside" id="403-QG-zbu"/>
+                                                        </connections>
+                                                    </button>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="2SY-2e-JCk">
+                                                        <rect key="frame" x="0.0" y="38" width="414" height="92"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Brightness" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O5V-km-ogr">
-                                                                <rect key="frame" x="0.0" y="0.0" width="82" height="30"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-1" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="HCf-um-Xav">
-                                                                <rect key="frame" x="111" y="0.0" width="289" height="31"/>
-                                                                <connections>
-                                                                    <action selector="brightnessValueChanged:" destination="1Aw-4e-BW2" eventType="valueChanged" id="2F7-hh-3ez"/>
-                                                                </connections>
-                                                            </slider>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="31" translatesAutoresizingMaskIntoConstraints="NO" id="TL0-gL-C2y">
+                                                                <rect key="frame" x="0.0" y="0.0" width="414" height="30"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Brightness" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O5V-km-ogr">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="82" height="30"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-1" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="HCf-um-Xav">
+                                                                        <rect key="frame" x="111" y="0.0" width="305" height="31"/>
+                                                                        <connections>
+                                                                            <action selector="brightnessValueChanged:" destination="1Aw-4e-BW2" eventType="valueChanged" id="2F7-hh-3ez"/>
+                                                                        </connections>
+                                                                    </slider>
+                                                                </subviews>
+                                                            </stackView>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="31" translatesAutoresizingMaskIntoConstraints="NO" id="P6v-qk-cRz">
+                                                                <rect key="frame" x="0.0" y="31" width="414" height="30"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Contrast" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GNr-u8-aJr">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="82" height="30"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.26000000000000001" maxValue="4" translatesAutoresizingMaskIntoConstraints="NO" id="6NZ-Q3-f93">
+                                                                        <rect key="frame" x="111" y="0.0" width="305" height="31"/>
+                                                                        <connections>
+                                                                            <action selector="contrastValueChanged:" destination="1Aw-4e-BW2" eventType="valueChanged" id="WLf-aN-btj"/>
+                                                                        </connections>
+                                                                    </slider>
+                                                                </subviews>
+                                                            </stackView>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="31" translatesAutoresizingMaskIntoConstraints="NO" id="59T-6M-YgR">
+                                                                <rect key="frame" x="0.0" y="62" width="414" height="30"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Saturation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mq4-h7-Mzw">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="82" height="30"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="2" translatesAutoresizingMaskIntoConstraints="NO" id="0Se-Sm-9FJ">
+                                                                        <rect key="frame" x="111" y="0.0" width="305" height="31"/>
+                                                                        <connections>
+                                                                            <action selector="saturationValueChanged:" destination="1Aw-4e-BW2" eventType="valueChanged" id="FmD-IP-vf8"/>
+                                                                        </connections>
+                                                                    </slider>
+                                                                </subviews>
+                                                            </stackView>
                                                         </subviews>
+                                                        <constraints>
+                                                            <constraint firstItem="HCf-um-Xav" firstAttribute="width" secondItem="6NZ-Q3-f93" secondAttribute="width" id="51I-3N-jwT"/>
+                                                            <constraint firstItem="0Se-Sm-9FJ" firstAttribute="width" secondItem="6NZ-Q3-f93" secondAttribute="width" id="eaw-Xi-Uky"/>
+                                                        </constraints>
                                                     </stackView>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="31" translatesAutoresizingMaskIntoConstraints="NO" id="P6v-qk-cRz">
-                                                        <rect key="frame" x="0.0" y="31" width="398" height="30"/>
-                                                        <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Contrast" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GNr-u8-aJr">
-                                                                <rect key="frame" x="0.0" y="0.0" width="82" height="30"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.26000000000000001" maxValue="4" translatesAutoresizingMaskIntoConstraints="NO" id="6NZ-Q3-f93">
-                                                                <rect key="frame" x="111" y="0.0" width="289" height="31"/>
-                                                                <connections>
-                                                                    <action selector="contrastValueChanged:" destination="1Aw-4e-BW2" eventType="valueChanged" id="WLf-aN-btj"/>
-                                                                </connections>
-                                                            </slider>
-                                                        </subviews>
-                                                    </stackView>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="31" translatesAutoresizingMaskIntoConstraints="NO" id="59T-6M-YgR">
-                                                        <rect key="frame" x="0.0" y="62" width="398" height="30"/>
-                                                        <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Saturation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mq4-h7-Mzw">
-                                                                <rect key="frame" x="0.0" y="0.0" width="82" height="30"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="2" translatesAutoresizingMaskIntoConstraints="NO" id="0Se-Sm-9FJ">
-                                                                <rect key="frame" x="111" y="0.0" width="289" height="31"/>
-                                                                <connections>
-                                                                    <action selector="saturationValueChanged:" destination="1Aw-4e-BW2" eventType="valueChanged" id="FmD-IP-vf8"/>
-                                                                </connections>
-                                                            </slider>
-                                                        </subviews>
-                                                    </stackView>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HuD-au-fGg">
+                                                        <rect key="frame" x="0.0" y="138" width="414" height="30"/>
+                                                        <state key="normal" title="Edit Exposure"/>
+                                                        <connections>
+                                                            <action selector="editExposureButtonPressed:" destination="1Aw-4e-BW2" eventType="touchUpInside" id="eU6-Kd-5NN"/>
+                                                        </connections>
+                                                    </button>
+                                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-10" maxValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="5Ly-HM-Nqr">
+                                                        <rect key="frame" x="-2" y="176" width="418" height="31"/>
+                                                        <connections>
+                                                            <action selector="exposureValueChanged:" destination="1Aw-4e-BW2" eventType="valueChanged" id="3l4-0J-yFf"/>
+                                                        </connections>
+                                                    </slider>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RWj-xb-AV1">
+                                                        <rect key="frame" x="0.0" y="214" width="414" height="30"/>
+                                                        <state key="normal" title="Edit Gamma"/>
+                                                        <connections>
+                                                            <action selector="editGammaButtonPressed:" destination="1Aw-4e-BW2" eventType="touchUpInside" id="gjl-8U-lCl"/>
+                                                        </connections>
+                                                    </button>
+                                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.25" maxValue="4" translatesAutoresizingMaskIntoConstraints="NO" id="7ZF-us-swD">
+                                                        <rect key="frame" x="-2" y="252" width="418" height="31"/>
+                                                        <connections>
+                                                            <action selector="gammaValueChanged:" destination="1Aw-4e-BW2" eventType="valueChanged" id="QdY-tb-5Ei"/>
+                                                        </connections>
+                                                    </slider>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yyV-mr-WMw">
+                                                        <rect key="frame" x="0.0" y="290" width="414" height="30"/>
+                                                        <state key="normal" title="Edit Zoom Blur"/>
+                                                        <connections>
+                                                            <action selector="editZoomBlurButtonPressed:" destination="1Aw-4e-BW2" eventType="touchUpInside" id="SRE-oo-4bc"/>
+                                                        </connections>
+                                                    </button>
+                                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-200" maxValue="200" translatesAutoresizingMaskIntoConstraints="NO" id="1eY-g0-kpe">
+                                                        <rect key="frame" x="-2" y="328" width="418" height="31"/>
+                                                        <connections>
+                                                            <action selector="zoomBlurValueChanged:" destination="1Aw-4e-BW2" eventType="valueChanged" id="jaz-jQ-Ynz"/>
+                                                        </connections>
+                                                    </slider>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0iJ-z4-wJt" userLabel="Toggle Comic Mode">
+                                                        <rect key="frame" x="0.0" y="366" width="414" height="30"/>
+                                                        <state key="normal" title="Toggle Comic Mode"/>
+                                                        <connections>
+                                                            <action selector="toggleComicMode:" destination="1Aw-4e-BW2" eventType="touchUpInside" id="mYW-RU-glw"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
-                                                <constraints>
-                                                    <constraint firstItem="HCf-um-Xav" firstAttribute="width" secondItem="6NZ-Q3-f93" secondAttribute="width" id="51I-3N-jwT"/>
-                                                    <constraint firstItem="0Se-Sm-9FJ" firstAttribute="width" secondItem="6NZ-Q3-f93" secondAttribute="width" id="eaw-Xi-Uky"/>
-                                                </constraints>
-                                            </stackView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HuD-au-fGg">
-                                                <rect key="frame" x="0.0" y="138" width="398" height="30"/>
-                                                <state key="normal" title="Edit Exposure"/>
-                                                <connections>
-                                                    <action selector="editExposureButtonPressed:" destination="1Aw-4e-BW2" eventType="touchUpInside" id="eU6-Kd-5NN"/>
-                                                </connections>
-                                            </button>
-                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-10" maxValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="5Ly-HM-Nqr">
-                                                <rect key="frame" x="-2" y="176" width="402" height="31"/>
-                                                <connections>
-                                                    <action selector="exposureValueChanged:" destination="1Aw-4e-BW2" eventType="valueChanged" id="3l4-0J-yFf"/>
-                                                </connections>
-                                            </slider>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RWj-xb-AV1">
-                                                <rect key="frame" x="0.0" y="214" width="398" height="30"/>
-                                                <state key="normal" title="Edit Gamma"/>
-                                                <connections>
-                                                    <action selector="editGammaButtonPressed:" destination="1Aw-4e-BW2" eventType="touchUpInside" id="gjl-8U-lCl"/>
-                                                </connections>
-                                            </button>
-                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.25" maxValue="4" translatesAutoresizingMaskIntoConstraints="NO" id="7ZF-us-swD">
-                                                <rect key="frame" x="-2" y="252" width="402" height="31"/>
-                                                <connections>
-                                                    <action selector="gammaValueChanged:" destination="1Aw-4e-BW2" eventType="valueChanged" id="QdY-tb-5Ei"/>
-                                                </connections>
-                                            </slider>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yyV-mr-WMw">
-                                                <rect key="frame" x="0.0" y="290" width="398" height="30"/>
-                                                <state key="normal" title="Edit Zoom Blur"/>
-                                                <connections>
-                                                    <action selector="editZoomBlurButtonPressed:" destination="1Aw-4e-BW2" eventType="touchUpInside" id="SRE-oo-4bc"/>
-                                                </connections>
-                                            </button>
-                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-200" maxValue="200" translatesAutoresizingMaskIntoConstraints="NO" id="1eY-g0-kpe">
-                                                <rect key="frame" x="-2" y="328" width="402" height="31"/>
-                                                <connections>
-                                                    <action selector="zoomBlurValueChanged:" destination="1Aw-4e-BW2" eventType="valueChanged" id="jaz-jQ-Ynz"/>
-                                                </connections>
-                                            </slider>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0iJ-z4-wJt" userLabel="Edit Light Tunnel">
-                                                <rect key="frame" x="0.0" y="366" width="398" height="30"/>
-                                                <state key="normal" title="Edit Light Tunnel"/>
-                                                <connections>
-                                                    <action selector="editLightTunnelButtonPressed:" destination="1Aw-4e-BW2" eventType="touchUpInside" id="w3g-XF-6Wz"/>
-                                                </connections>
-                                            </button>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="IV9-Ot-bbG" userLabel="LightTunnel Stack View">
-                                                <rect key="frame" x="0.0" y="404" width="398" height="61"/>
-                                                <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="31" translatesAutoresizingMaskIntoConstraints="NO" id="0EA-sF-SOC">
-                                                        <rect key="frame" x="0.0" y="0.0" width="398" height="30"/>
-                                                        <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Rotation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DVQ-d9-5vz">
-                                                                <rect key="frame" x="0.0" y="0.0" width="64" height="30"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1.570796326794897" translatesAutoresizingMaskIntoConstraints="NO" id="Ljj-IL-VpE" userLabel="Rotation Slider">
-                                                                <rect key="frame" x="93" y="0.0" width="307" height="31"/>
-                                                                <connections>
-                                                                    <action selector="contrastValueChanged:" destination="1Aw-4e-BW2" eventType="valueChanged" id="6Cq-OT-x3l"/>
-                                                                    <action selector="rotationValueChanged:" destination="1Aw-4e-BW2" eventType="valueChanged" id="ugv-HN-Nlk"/>
-                                                                </connections>
-                                                            </slider>
-                                                        </subviews>
-                                                    </stackView>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="31" translatesAutoresizingMaskIntoConstraints="NO" id="cMY-Q3-NmL">
-                                                        <rect key="frame" x="0.0" y="31" width="398" height="30"/>
-                                                        <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Radius" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xjV-TB-fRi">
-                                                                <rect key="frame" x="0.0" y="0.0" width="64" height="30"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="1" maxValue="500" translatesAutoresizingMaskIntoConstraints="NO" id="4Jl-HU-PWO" userLabel="Radius Slider">
-                                                                <rect key="frame" x="93" y="0.0" width="307" height="31"/>
-                                                                <connections>
-                                                                    <action selector="radiusValueChanged:" destination="1Aw-4e-BW2" eventType="valueChanged" id="GKQ-zR-GSq"/>
-                                                                    <action selector="saturationValueChanged:" destination="1Aw-4e-BW2" eventType="valueChanged" id="8Ek-Xk-5FY"/>
-                                                                </connections>
-                                                            </slider>
-                                                        </subviews>
-                                                    </stackView>
-                                                </subviews>
-                                                <constraints>
-                                                    <constraint firstItem="4Jl-HU-PWO" firstAttribute="width" secondItem="Ljj-IL-VpE" secondAttribute="width" id="TIp-cR-uCr"/>
-                                                </constraints>
                                             </stackView>
                                         </subviews>
                                     </stackView>
@@ -320,13 +276,10 @@
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="PkI-rS-ua9" secondAttribute="trailing" id="1cC-FG-cAC"/>
                                     <constraint firstItem="PkI-rS-ua9" firstAttribute="top" secondItem="9qd-If-ddw" secondAttribute="top" id="3tV-sW-NF1"/>
-                                    <constraint firstItem="jrm-Ph-n9y" firstAttribute="top" secondItem="PkI-rS-ua9" secondAttribute="bottom" constant="8" id="Fjz-uI-ORP"/>
                                     <constraint firstItem="PkI-rS-ua9" firstAttribute="leading" secondItem="9qd-If-ddw" secondAttribute="leading" id="bPK-xN-eaO"/>
                                     <constraint firstAttribute="bottom" secondItem="PkI-rS-ua9" secondAttribute="bottom" id="cfV-7c-ubK"/>
                                     <constraint firstItem="PkI-rS-ua9" firstAttribute="width" secondItem="9qd-If-ddw" secondAttribute="width" id="dWh-6N-mO7"/>
-                                    <constraint firstItem="jrm-Ph-n9y" firstAttribute="leading" secondItem="9qd-If-ddw" secondAttribute="leading" constant="8" id="mpN-GC-zht"/>
                                     <constraint firstAttribute="height" priority="250" constant="603" id="qMm-7B-8rp"/>
-                                    <constraint firstAttribute="trailing" secondItem="jrm-Ph-n9y" secondAttribute="trailing" constant="8" id="xtj-wP-R0y"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
@@ -356,10 +309,7 @@
                         <outlet property="gammaSlider" destination="7ZF-us-swD" id="8r3-cy-Snh"/>
                         <outlet property="imageHeightConstraint" destination="MHD-wr-Gq9" id="HyG-8g-Ck1"/>
                         <outlet property="imageView" destination="4eK-5F-H5h" id="e7m-c5-Xhz"/>
-                        <outlet property="lightTunnelStackView" destination="IV9-Ot-bbG" id="SmP-cO-T4v"/>
                         <outlet property="postButton" destination="hsH-Uv-tug" id="ZBn-KE-cpU"/>
-                        <outlet property="radiusSlider" destination="4Jl-HU-PWO" id="oaK-Xe-Ea7"/>
-                        <outlet property="rotationSlider" destination="Ljj-IL-VpE" id="arF-Zl-GZQ"/>
                         <outlet property="saturationSlider" destination="0Se-Sm-9FJ" id="XUd-CO-NTX"/>
                         <outlet property="titleTextField" destination="Op6-OA-6Ou" id="JEe-cj-4mv"/>
                         <outlet property="zoomBlurSlider" destination="1eY-g0-kpe" id="tZy-0d-St2"/>
