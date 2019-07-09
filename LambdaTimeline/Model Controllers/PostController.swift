@@ -13,6 +13,13 @@ import FirebaseStorage
 
 class PostController {
     
+    var posts: [Post] = []
+    let currentUser = Auth.auth().currentUser
+    let postsRef = Database.database().reference().child("posts")
+    
+    let storageRef = Storage.storage().reference()
+    
+    
     func createPost(with title: String, ofType mediaType: MediaType, mediaData: Data, ratio: CGFloat? = nil, completion: @escaping (Bool) -> Void = { _ in }) {
         
         guard let currentUser = Auth.auth().currentUser,
@@ -35,7 +42,11 @@ class PostController {
         }
     }
     
-    func addComment(with text: String, to post: inout Post) {
+    
+    
+    
+    
+    func addTextComment(with text: String, to post: inout Post) {
         
         guard let currentUser = Auth.auth().currentUser,
             let author = Author(user: currentUser) else { return }
@@ -46,6 +57,24 @@ class PostController {
         savePostToFirebase(post)
     }
 
+    
+    func addVoiceComment(audioURL: URL, post: inout Post) {
+        guard let currentUser = Auth.auth().currentUser,
+            let author = Author(user: currentUser) else { return }
+        
+        let comment = Comment(author: author, audioURL: audioURL)
+        post.comments.append(comment)
+        savePostToFirebase(post)
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
     func observePosts(completion: @escaping (Error?) -> Void) {
         
         postsRef.observe(.value, with: { (snapshot) in
@@ -116,12 +145,5 @@ class PostController {
         
         uploadTask.resume()
     }
-    
-    var posts: [Post] = []
-    let currentUser = Auth.auth().currentUser
-    let postsRef = Database.database().reference().child("posts")
-    
-    let storageRef = Storage.storage().reference()
-    
     
 }
