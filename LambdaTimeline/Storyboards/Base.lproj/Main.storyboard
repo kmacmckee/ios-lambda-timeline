@@ -405,10 +405,16 @@
                                         <state key="normal" title="Cancel">
                                             <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="cancelButtonPressed:" destination="Q9c-vT-Q12" eventType="touchUpInside" id="rVh-zd-OIA"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PxV-cx-l3P">
                                         <rect key="frame" x="207" y="0.0" width="175" height="30"/>
                                         <state key="normal" title="Submit"/>
+                                        <connections>
+                                            <action selector="submitButtonPressed:" destination="Q9c-vT-Q12" eventType="touchUpInside" id="8wj-I0-I2Q"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>

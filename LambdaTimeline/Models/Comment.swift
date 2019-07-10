@@ -19,9 +19,9 @@ struct Comment: FirebaseConvertible, Equatable {
     let text: String?
     let author: Author
     let timestamp: Date
-    let audioURL: URL?
+    let audioURL: String?
     
-    init(text: String? = nil, author: Author, timestamp: Date = Date(), audioURL: URL? = nil) {
+    init(text: String? = nil, author: Author, timestamp: Date = Date(), audioURL: String? = nil) {
         self.text = text
         self.author = author
         self.timestamp = timestamp
@@ -33,7 +33,7 @@ struct Comment: FirebaseConvertible, Equatable {
             let authorDictionary = dictionary[Comment.author] as? [String: Any],
             let author = Author(dictionary: authorDictionary),
             let timestampTimeInterval = dictionary[Comment.timestampKey] as? TimeInterval,
-            let audioURL = dictionary[Comment.audioURL] as? URL else { return nil }
+            let audioURL = dictionary[Comment.audioURL] as? String else { return nil }
         
         self.text = text
         self.author = author

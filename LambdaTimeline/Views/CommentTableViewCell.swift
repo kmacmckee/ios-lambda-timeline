@@ -28,7 +28,10 @@ class CommentTableViewCell: UITableViewCell {
             commentLabel.isHidden = true
         } else {
             playButton.isHidden = true
+            commentLabel.text = comment.text
         }
+        
+        nameLabel.text = comment.author.displayName  
     }
     
     override func awakeFromNib() {

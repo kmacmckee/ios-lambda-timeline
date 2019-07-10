@@ -26,6 +26,7 @@ class ImagePostDetailTableViewController: UITableViewController {
         
         titleLabel.text = post.title
         authorLabel.text = post.author.displayName
+        tableView.reloadData()
     }
     
     // MARK: - Table view data source
@@ -34,16 +35,15 @@ class ImagePostDetailTableViewController: UITableViewController {
         
         let alert = UIAlertController(title: "Add a comment", message: "Would you like to leave a Text Comment or a Voice Comment?", preferredStyle: .alert)
         
+        var commentTextField: UITextField?
+        
+        alert.addTextField { (textField) in
+            textField.placeholder = "Comment:"
+            commentTextField = textField
+        }
         
         let addCommentAction = UIAlertAction(title: "Text Comment", style: .default) { (_) in
-            
-            var commentTextField: UITextField?
-            
-            alert.addTextField { (textField) in
-                textField.placeholder = "Comment:"
-                commentTextField = textField
-            }
-            
+  
             guard let commentText = commentTextField?.text else { return }
             
             self.postController.addTextComment(with: commentText, to: &self.post!)
