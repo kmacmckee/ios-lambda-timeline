@@ -1,5 +1,5 @@
 //
-//  CameraPreviewView.swift
+//  VideoPlaybackView.swift
 //  LambdaTimeline
 //
 //  Created by Kobe McKee on 7/10/19.
@@ -9,16 +9,15 @@
 import UIKit
 import AVFoundation
 
-
-class CameraPreviewView: UIView {
+class VideoPlaybackView: UIView {
 
     override class var layerClass: AnyClass {
-        return AVCaptureVideoPreviewLayer.self
+        return AVPlayerLayer.self
     }
     
-    var videoPreviewLayer: AVCaptureVideoPreviewLayer {
-        return layer as! AVCaptureVideoPreviewLayer
+    var videoPlaybackLayer: AVPlayerLayer {
+        return layer as! AVPlayerLayer
     }
     
-    
+
 }

@@ -215,12 +215,32 @@
                                         </constraints>
                                         <color key="tintColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" image="Record"/>
+                                        <connections>
+                                            <action selector="toggleRecording:" destination="DME-AW-s4m" eventType="touchUpInside" id="WIj-t7-Gzh"/>
+                                        </connections>
                                     </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="120" translatesAutoresizingMaskIntoConstraints="NO" id="o3w-Hz-RY6">
+                                        <rect key="frame" x="16.000000000000007" y="826" width="103.66666666666669" height="30"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Uh-Sx-aJO">
+                                                <rect key="frame" x="0.0" y="0.0" width="103.66666666666667" height="30"/>
+                                                <state key="normal" title="Cancel">
+                                                    <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="cancelButtonPressed:" destination="DME-AW-s4m" eventType="touchUpInside" id="Iq7-K5-V0L"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="3Uh-Sx-aJO" firstAttribute="width" secondItem="vKL-lu-RvB" secondAttribute="width" multiplier="1/4" id="6FL-Bw-S6S"/>
                                     <constraint firstItem="awv-sm-uKM" firstAttribute="centerX" secondItem="vKL-lu-RvB" secondAttribute="centerX" id="7bs-IT-ksS"/>
                                     <constraint firstAttribute="bottom" secondItem="awv-sm-uKM" secondAttribute="bottom" constant="60" id="Tk9-oM-Ubg"/>
+                                    <constraint firstItem="o3w-Hz-RY6" firstAttribute="leading" secondItem="vKL-lu-RvB" secondAttribute="leading" constant="16" id="pCN-pJ-EH1"/>
+                                    <constraint firstAttribute="bottom" secondItem="o3w-Hz-RY6" secondAttribute="bottom" constant="40" id="v6y-MB-j60"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -233,6 +253,11 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="8q4-dJ-TmN"/>
                     </view>
+                    <connections>
+                        <outlet property="previewView" destination="vKL-lu-RvB" id="ok7-P9-IMQ"/>
+                        <outlet property="recordButton" destination="awv-sm-uKM" id="Xqd-Kk-eMd"/>
+                        <segue destination="LDq-AH-58y" kind="presentation" identifier="ShowVideoPlayback" id="HOv-dK-VRC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7hV-7o-Xu4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -393,6 +418,64 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CdL-Y3-4ej" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1968.8" y="472.71364317841085"/>
+        </scene>
+        <!--Video Playback View Controller-->
+        <scene sceneID="xoK-0F-U6p">
+            <objects>
+                <viewController id="LDq-AH-58y" customClass="VideoPlaybackViewController" customModule="LambdaTimeline" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0uq-XO-7Vl">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k2D-Uf-a19" customClass="VideoPlaybackView" customModule="LambdaTimeline" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="120" translatesAutoresizingMaskIntoConstraints="NO" id="IOA-L3-1Th">
+                                        <rect key="frame" x="16" y="826" width="382" height="30"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WOx-3u-Qeg">
+                                                <rect key="frame" x="0.0" y="0.0" width="131" height="30"/>
+                                                <state key="normal" title="Cancel">
+                                                    <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="cancelButtonPressed:" destination="LDq-AH-58y" eventType="touchUpInside" id="PYv-wJ-Yx5"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rrW-GP-pmJ">
+                                                <rect key="frame" x="251" y="0.0" width="131" height="30"/>
+                                                <state key="normal" title="Save"/>
+                                                <connections>
+                                                    <action selector="saveButtonPressed:" destination="LDq-AH-58y" eventType="touchUpInside" id="IsO-fy-vAO"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="IOA-L3-1Th" secondAttribute="bottom" constant="40" id="J1d-GQ-es5"/>
+                                    <constraint firstAttribute="trailing" secondItem="IOA-L3-1Th" secondAttribute="trailing" constant="16" id="fw8-fr-CtL"/>
+                                    <constraint firstItem="IOA-L3-1Th" firstAttribute="leading" secondItem="k2D-Uf-a19" secondAttribute="leading" constant="16" id="tj3-yC-qJj"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="k2D-Uf-a19" secondAttribute="bottom" id="8iD-8e-DUk"/>
+                            <constraint firstItem="k2D-Uf-a19" firstAttribute="leading" secondItem="XzY-GV-sHZ" secondAttribute="leading" id="RJx-KC-8Te"/>
+                            <constraint firstItem="k2D-Uf-a19" firstAttribute="trailing" secondItem="XzY-GV-sHZ" secondAttribute="trailing" id="ng0-Br-Vug"/>
+                            <constraint firstItem="k2D-Uf-a19" firstAttribute="top" secondItem="0uq-XO-7Vl" secondAttribute="top" id="z0e-AK-Yx2"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="XzY-GV-sHZ"/>
+                    </view>
+                    <connections>
+                        <outlet property="playbackView" destination="k2D-Uf-a19" id="h7M-et-r2p"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tvm-XP-iAT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3848" y="-196"/>
         </scene>
     </scenes>
     <resources>

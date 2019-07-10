@@ -32,6 +32,8 @@
 		C4DAAA1522D677BC00F9F6F7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C4DAAA1422D677BC00F9F6F7 /* GoogleService-Info.plist */; };
 		C4DAAA1722D67B9E00F9F6F7 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DAAA1622D67B9E00F9F6F7 /* CameraViewController.swift */; };
 		C4DAAA1922D67BBE00F9F6F7 /* CameraPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DAAA1822D67BBE00F9F6F7 /* CameraPreviewView.swift */; };
+		C4DAAA1B22D68BEE00F9F6F7 /* VideoPlaybackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DAAA1A22D68BEE00F9F6F7 /* VideoPlaybackView.swift */; };
+		C4DAAA1D22D68CC800F9F6F7 /* VideoPlaybackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DAAA1C22D68CC800F9F6F7 /* VideoPlaybackViewController.swift */; };
 		E453457955DF907FCBD117F1 /* Pods_LambdaTimeline.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA39CACB677861CF84322FB5 /* Pods_LambdaTimeline.framework */; };
 /* End PBXBuildFile section */
 
@@ -66,6 +68,8 @@
 		C4DAAA1422D677BC00F9F6F7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C4DAAA1622D67B9E00F9F6F7 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		C4DAAA1822D67BBE00F9F6F7 /* CameraPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreviewView.swift; sourceTree = "<group>"; };
+		C4DAAA1A22D68BEE00F9F6F7 /* VideoPlaybackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlaybackView.swift; sourceTree = "<group>"; };
+		C4DAAA1C22D68CC800F9F6F7 /* VideoPlaybackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlaybackViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +166,7 @@
 		46A0366B21700F6100E7FF73 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C4DAAA1C22D68CC800F9F6F7 /* VideoPlaybackViewController.swift */,
 				C4DAAA1622D67B9E00F9F6F7 /* CameraViewController.swift */,
 				46A0366C2170158900E7FF73 /* SignInViewController.swift */,
 				46A0366921700F5100E7FF73 /* PostsCollectionViewController.swift */,
@@ -176,6 +181,7 @@
 			children = (
 				46CFE7022171572600E7FF73 /* ImagePostCollectionViewCell.swift */,
 				C4DAAA1822D67BBE00F9F6F7 /* CameraPreviewView.swift */,
+				C4DAAA1A22D68BEE00F9F6F7 /* VideoPlaybackView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -367,9 +373,11 @@
 				46D571F32172D43B00E7FF73 /* Cache.swift in Sources */,
 				46CFE7012171559500E7FF73 /* FetchMediaOperation.swift in Sources */,
 				46D571F82173FC2700E7FF73 /* ImagePostDetailTableViewController.swift in Sources */,
+				C4DAAA1B22D68BEE00F9F6F7 /* VideoPlaybackView.swift in Sources */,
 				46CFE7032171572600E7FF73 /* ImagePostCollectionViewCell.swift in Sources */,
 				4646379C2170091A00E7FF73 /* PostController.swift in Sources */,
 				464637992170048900E7FF73 /* FirebaseConvertible.swift in Sources */,
+				C4DAAA1D22D68CC800F9F6F7 /* VideoPlaybackViewController.swift in Sources */,
 				46A0366A21700F5100E7FF73 /* PostsCollectionViewController.swift in Sources */,
 				C4DAAA1922D67BBE00F9F6F7 /* CameraPreviewView.swift in Sources */,
 				46D571F52173CF3E00E7FF73 /* UIImage+Ratio.swift in Sources */,

@@ -60,7 +60,11 @@ class PostsCollectionViewController: UICollectionViewController, UICollectionVie
             cell.post = post
             
             loadImage(for: cell, forItemAt: indexPath)
+            return cell
             
+        case .video:
+            // TODO: set up cell
+            let cell = UICollectionViewCell()
             return cell
         }
     }
@@ -77,6 +81,10 @@ class PostsCollectionViewController: UICollectionViewController, UICollectionVie
             
             guard let ratio = post.ratio else { return size }
             
+            size.height = size.width * ratio
+            
+        case .video:
+            guard let ratio = post.ratio else { return size }
             size.height = size.width * ratio
         }
         
@@ -146,6 +154,12 @@ class PostsCollectionViewController: UICollectionViewController, UICollectionVie
         
         operations[postID] = fetchOp
     }
+    
+    
+    // TODO: load video function
+    
+    
+    
     // MARK: - Navigation
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -164,6 +178,9 @@ class PostsCollectionViewController: UICollectionViewController, UICollectionVie
             destinationVC?.postController = postController
             destinationVC?.post = postController.posts[indexPath.row]
             destinationVC?.imageData = cache.value(for: postID)
+        } else if segue.identifier == "ShowCamera" {
+            let destinationVC = segue.destination as? CameraViewController
+            destinationVC?.postController = postController
         }
     }
     
